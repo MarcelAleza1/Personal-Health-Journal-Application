@@ -82,64 +82,6 @@ export const Home = () => {
                     {/* End Item */}
                 </div>
             </div>
-            {/* <div className='bg-green-600  rounded-md h-full'>
-                <div className='flex justify-between mx-5'>
-                     <img src={bp1} alt='BP1' className='w-[50px] h-[50px]' /> 
-                    <button className='bg-white p-5 rounded' >Track your health now</button>
-                </div>
-                <div className='flex justify-between mx-5 bg-gray'>
-                    <p>Last report</p>
-                    <p>Hisoty {'>'}</p>
-                </div>
-            </div> */}
         </>
-        // <>
-        //     <div className="h-full bg-black bg-opacity-50 flex items-center justify-center">
-        //         <div className="text-center ">
-        //             <h1 className="text-4xl font-bold mb-4">Welcome to Health insights</h1>
-        //             <p className="text-lg mb-8">
-        //                 Record and view your health-related activities and notes easily.
-        //             </p>
-        //             <div className="flex flex-wrap justify-center">
-        //                 <div className="m-4 p-8 bg-white text-black rounded-lg shadow-md flex items-center justify-center">
-        //                     <svg
-        //                         xmlns="http://www.w3.org/2000/svg"
-        //                         className="h-16 w-16 text-blue-500 mr-4"
-        //                         viewBox="0 0 20 20"
-        //                         fill="currentColor"
-        //                     >
-        //                         <path
-        //                             fillRule="evenodd"
-        //                             d="M10 18a8 8 0 100-16 8 8 0 000 16zM5.536 6.464a1 1 0 00-1.415 1.414l2.122 2.122-2.121 2.122a1 1 0 001.415 1.414l2.121-2.122 2.122 2.122a1 1 0 001.414-1.414L9.07 10.001l2.121-2.122a1 1 0 00-1.414-1.414L7.656 8.587 5.536 6.464zM15 10a5 5 0 11-10 0 5 5 0 0110 0z"
-        //                             clipRule="evenodd"
-        //                         />
-        //                     </svg>
-        //                     <div>
-        //                         <h2 className="text-xl font-bold mb-2">Record Activities</h2>
-        //                         <p>Log your exercises, meals, medications, and more.</p>
-        //                     </div>
-        //                 </div>
-        //                 <div className="m-4 p-8 bg-white text-black rounded-lg shadow-md flex items-center justify-center">
-        //                     <svg
-        //                         xmlns="http://www.w3.org/2000/svg"
-        //                         className="h-16 w-16 text-green-500 mr-4"
-        //                         viewBox="0 0 20 20"
-        //                         fill="currentColor"
-        //                     >
-        //                         <path
-        //                             fillRule="evenodd"
-        //                             d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 6a1 1 0 112 0v4a1 1 0 01-2 0V6zm2-2a1 1 0 11-2 0 1 1 0 012 0z"
-        //                             clipRule="evenodd"
-        //                         />
-        //                     </svg>
-        //                     <div>
-        //                         <h2 className="text-xl font-bold mb-2">View Summary</h2>
-        //                         <p>Get insights and summaries of your health activities.</p>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </>
     );
 };

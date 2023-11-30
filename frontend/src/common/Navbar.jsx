@@ -1,11 +1,11 @@
-import React, {useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
-import apiCalls from '../services/api.js';
-
+import { LoginContext } from '../contexts/loginContext.js';
+//import authServices from '../services/auth.js'
 export const Navbar = () => {
-   // const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
-   const [isLoggedIn,setIsLoggedIn] = useState(false);
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+    //const [isLoggedIn,setIsLoggedIn] = useState(false);
     const Links = [
         { name: "Home", link: "/" },
         // { name: "Tracker", link: "/tracker" },
@@ -13,24 +13,7 @@ export const Navbar = () => {
     ];
     let [open, setOpen] = useState(false);
 
-    const token = localStorage.getItem("token");
-
-    useEffect(() => {
-        const getProfile = async () => {
-            // const apiResponse = await apiCalls.userProfile(token);
-            // if (apiResponse.status === 200) {
-            //     setIsLoggedIn(true)
-            // }
-            // else {
-            //     setIsLoggedIn(false);
-            // }
-        };
-
-        getProfile();
-
-    }, [token]);
-
-
+   
     return (
         <div className='shadow-md w-full sticky top-0 left-0 mb-5 '>
             <div className='md:flex items-center justify-between bg-white solide py-4 md:px-10 px-7'>

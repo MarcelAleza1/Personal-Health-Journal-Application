@@ -2,7 +2,7 @@ const BloodPressure = require('../models/bloodPressure');
 
 const getAllBloodPressures = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.header.userId;
     const userBloodPressureData = await BloodPressure.find({ userId });
     res.json(userBloodPressureData);
   } catch (error) {
@@ -13,7 +13,7 @@ const getAllBloodPressures = async (req, res) => {
 const createBloodPressure = async (req, res) => {
   try {
     const { systolic, diastolic, pulse, note } = req.body;
-    const userId = req.user.id;
+    const userId = req.header.userId;
     const newBloodPressure = await BloodPressure.create({
       userId,
       systolic,

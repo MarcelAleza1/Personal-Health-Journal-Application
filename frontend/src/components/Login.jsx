@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
 import { Navigate } from "react-router-dom";
-import apiCalls from '../services/api.js';
-// import { LoginContext } from '../contexts/LoginContext.js';
+//import apiCalls from '../services/api.js';
+import authServices from '../services/auth.js'
+import { LoginContext } from '../contexts/loginContext.js';
 import { Loader } from '../common/Loader.jsx';
 export const Login = () => {
   const [email, setEmail] = useState(null);
@@ -9,23 +10,23 @@ export const Login = () => {
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loggedId, setLoggedIn] = useState(false);
-  //const {isLoggedIn,setIsLoggedIn} = useContext(LoginContext);
+  const {isLoggedIn,setIsLoggedIn} = useContext(LoginContext);
   const LoginApi = async () => {
     var serverResponse;
     setLoading(true);
-    serverResponse = await apiCalls.loginUser(email, password);
+    serverResponse = await authServices.loginUser(email, password);
     setLoading(false);
       //console.log("serverResponse: ",serverResponse);
     if(serverResponse.status===200){
       setLoggedIn(true);
-      //setIsLoggedIn(true)
+      setIsLoggedIn(true)
     } else {
       setLoginError(true);
     }
     serverResponse = await serverResponse.json();
-    // if (serverResponse.error) {
-    //   setLoginError(true);
-    // } 
+    if (serverResponse.error) {
+      setLoginError(true);
+    } 
     localStorage.setItem('token', serverResponse.token);
     console.log(serverResponse);
   }

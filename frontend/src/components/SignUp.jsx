@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-import apiCalls from '../services/api.js';
+//import apiCalls from '../services/api.js';
+import authServices from '../services/auth.js'
 import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Loader } from '../common/Loader.jsx';
@@ -34,7 +35,7 @@ export const Signup = () => {
                 console.log("sign up details ", values);
                 let apiResponse;
                 setLoading(true);
-                apiResponse = await apiCalls.registerUser(values);
+                apiResponse = await authServices.registerUser(values);
                 console.log(apiResponse);
                 if (apiResponse?.ok) {
                     setIsRegistered(true)

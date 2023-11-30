@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-export const CreateModal = ({ showModal, closeModal, onSubmit,title }) => {
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
+export const CreateModal = ({ showModal, closeModal, onSubmit, title, input1, input2, input3, input4 }) => {
+  const [getInput1, setInput1] = useState('');
+  const [getInput2, setInput2] = useState('');
+  const [getInput3, setInput3] = useState('');
+  const [getInput4, setInput4] = useState('');
 
   const handleSubmit = () => {
-  
-    onSubmit({ input1, input2, input3, input4 });
-  
+
+    const userId = localStorage.getItem("userId"); //
+    onSubmit({userId, getInput1, getInput2, getInput3, getInput4 });
+
     setInput1('');
     setInput2('');
     setInput3('');
@@ -35,34 +36,41 @@ export const CreateModal = ({ showModal, closeModal, onSubmit,title }) => {
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">{title}</h3>
                 <div className="mb-4">
+                  <p className='mb-1'>{input1}</p>
                   <input
+                    type='number'
                     className="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Input 1"
-                    value={input1}
+                    placeholder="70"
+                    value={getInput1}
                     onChange={(e) => setInput1(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
+                <p className='mb-1'>{input2}</p>
                   <input
                     className="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Input 2"
-                    value={input2}
+                    placeholder="70"
+                    type='number'
+                    value={getInput2}
                     onChange={(e) => setInput2(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
+                <p className='mb-1'>{input3}</p>
                   <input
                     className="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Input 3"
-                    value={input3}
+                    placeholder="70"
+                    type='number'
+                    value={getInput3}
                     onChange={(e) => setInput3(e.target.value)}
                   />
                 </div>
                 <div className="mb-4">
+                <p className='mb-1'>{input4}</p>
                   <input
                     className="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Input 4"
-                    value={input4}
+                    placeholder="Write something"
+                    value={getInput4}
                     onChange={(e) => setInput4(e.target.value)}
                   />
                 </div>

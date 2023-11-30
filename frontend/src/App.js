@@ -11,6 +11,8 @@ import { Login } from "./components/Login";
 import { ExerciseTracker } from "./components/ExerciceTraker";
 import { BloodPressure } from "./components/BloodPressure";
 import { Insights } from "./components/Insights";
+import { Profile } from "./components/Profile";
+import { Logout } from "./common/Logout";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/tracker" element={<ExerciseTracker />} />
           <Route path="/bpressure" element={<BloodPressure />} />
           <Route path="/insights" element = {<Insights />}/>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/logout" element={<Logout />}/>
           <Route path='*' element={<Home />} />
         </Routes>
       </Router>
