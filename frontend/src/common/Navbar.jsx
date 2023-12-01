@@ -29,10 +29,7 @@ export const Navbar = () => {
     useEffect(() => {
         getProfile();
     }, [token])
-
-    useEffect(() => {
-        console.log("Open: ", open);
-    }, [open])
+    
     return (
         <div className='shadow-md w-full sticky top-0 left-0 mb-5 '>
             <div className='md:flex items-center justify-between bg-white solide py-4 md:px-10 px-7'>
