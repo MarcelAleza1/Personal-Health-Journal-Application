@@ -9,7 +9,8 @@ export const BloodPressure = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const [redirectToLogin, setRedirectToLogin] = useState(false);
   const [loading, setLoading] = useState(false)
-  const [last5Reading,setLast5Reading]= useState([]);
+  const [last5Reading, setLast5Reading] = useState([]);
+  const [addRecord,setAddRecord] = useState(false)
 
   const openModal = () => {
     if (isLoggedIn) {
@@ -39,6 +40,7 @@ export const BloodPressure = () => {
     const apiResponse = await activitiesServices.createBloodPressure(BPData);
     if (apiResponse.ok) {
       console.log("apiResonse", apiResponse);
+      setAddRecord(!addRecord);
     }
     else {
       console.log("Error posting data");
@@ -47,40 +49,32 @@ export const BloodPressure = () => {
     closeModal();
   };
   const userId = localStorage.getItem("userId");
- 
-  const getBPData = async () => {
-    setLoading(true)
-    const apiResponse = await activitiesServices.getAllBloodPressures(userId);
-    if (apiResponse.status === 200) {
-      console.log("apiResonse", apiResponse);
-      setIsLoggedIn(true)
-    }
-    else {
-      setIsLoggedIn(false);
-    }
-    const BPData = await apiResponse.json();
-    if(BPData?.lenght<=5){
-      setLast5Reading(BPData);
-    } else {
-      setLast5Reading(BPData.slice(-5));
-    }
-    
-    setLoading(false);
-    console.log("BPData: ", BPData);
-  };
 
   useEffect(() => {
-    getBPData()
-  }, [userId]);
+    const getBPData = async () => {
+      setLoading(true)
+      const apiResponse = await activitiesServices.getAllBloodPressures(userId);
+      if (apiResponse.status === 200) {
+        console.log("apiResonse", apiResponse);
+      }
+      else {
+        //Error occured
+      }
+      const BPData = await apiResponse.json();
+      if (BPData?.lenght <= 5) {
+        setLast5Reading(BPData);
+      } else {
+        setLast5Reading(BPData.slice(-5));
+      }
+  
+      setLoading(false);
+      console.log("BPData: ", BPData);
+    };
 
-  const bloodPressureData = {
-    systolic: 120,
-    diastolic: 80,
-    pulse: 70,
-    note: 'BP'
-  };
-
-
+    if (isLoggedIn) {
+      getBPData()
+    }
+  }, [userId,addRecord]);
 
   return (
     <div className="max-w-xl mx-auto mt-8 p-6 rounded-lg shadow-md bg-white">
@@ -89,10 +83,10 @@ export const BloodPressure = () => {
       {/* Display blood pressure information */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Latest Reading:</h3>
-        <p className="flex">Systolic: {last5Reading.map((reading)=> {return(<p>{reading.systolic}:</p>)})}</p>
-        <p className="flex">Diastolic: {last5Reading.map((reading)=> {return(<p>{reading.diastolic}:</p>)})}</p>
-        <p className="flex">Pulse: {last5Reading.map((reading)=> {return(<p>{reading.pulse}:</p>)})}</p>
-        <p className="flex">Note: {last5Reading[last5Reading.length-1]?.note.slice(0,20)}</p>
+        <h3 className="flex">Systolic: {last5Reading.map((reading, idx) => { return (<p key={idx}>{reading.systolic}:</p>) })}</h3>
+        <h3 className="flex">Diastolic: {last5Reading.map((reading, idx) => { return (<p key={idx}>{reading.diastolic}:</p>) })}</h3>
+        <h3 className="flex">Pulse: {last5Reading.map((reading, idx) => { return (<p key={idx}>{reading.pulse}:</p>) })}</h3>
+        <h3 className="flex">Note: {last5Reading[last5Reading.length - 1]?.note.slice(0, 20)}</h3>
       </div>
 
       <button

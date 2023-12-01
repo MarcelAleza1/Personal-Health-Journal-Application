@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'token','userId'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'token','userId','user'],
 }));
 const User = require('./models/user');
 // const { auth } = require('./middlewares/auth');

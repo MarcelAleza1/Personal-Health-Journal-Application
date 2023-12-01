@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const bloodSugarSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   glucoseLevel: Number,
   fasting: Boolean,
   mealTime: String,

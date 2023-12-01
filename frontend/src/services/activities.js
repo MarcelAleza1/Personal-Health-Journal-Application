@@ -8,9 +8,9 @@ const createBloodPressure = async (values) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "userId": values.userId
             },
             body: JSON.stringify({
+                userId: values.userId,
                 systolic: values.systolic,
                 diastolic: values.diastolic,
                 pulse: values.pulse,
@@ -48,7 +48,7 @@ const getAllBloodSugars = async (userId) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "userId": userId
+                "user": userId
             },
 
         });
@@ -66,9 +66,9 @@ const createBloodSugar = async (values) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "userId": values.userId
             },
             body: JSON.stringify({
+                userId: values.userId,
                 glucoseLevel: values.glucoseLevel,
                 fasting: values.fasting,
                 mealTime: values.mealTime,
@@ -91,9 +91,9 @@ const createWeightBMI = async (values) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "userId": values.userId
             },
             body: JSON.stringify({
+                user: values.userId,
                 weight: values.weight,
                 bmi: values.bmi,
                 date: values.date,
@@ -115,7 +115,7 @@ const getAllWeightBMI = async (userId) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "userId": userId
+                "user": userId
             },
 
         });

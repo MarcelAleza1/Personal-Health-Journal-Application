@@ -2,7 +2,7 @@ const BloodSugar = require('../models/bloodSugar');
 
 const getAllBloodSugars = async (req, res) => {
   try {
-    const userId = req.header.userId;
+    const userId = req.headers.userId;
     const userBloodSugarData = await BloodSugar.find({ userId });
     res.json(userBloodSugarData);
   } catch (error) {
@@ -12,8 +12,8 @@ const getAllBloodSugars = async (req, res) => {
 
 const createBloodSugar = async (req, res) => {
   try {
-    const { glucoseLevel, fasting, mealTime, date, note } = req.body;
-    const userId = req.header.userId;
+    const {userId, glucoseLevel, fasting, mealTime, date, note } = req.body;
+    //const userId = req.header.userId;
     const newBloodSugar = await BloodSugar.create({
       userId,
       glucoseLevel,

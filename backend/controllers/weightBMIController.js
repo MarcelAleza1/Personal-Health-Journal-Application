@@ -2,7 +2,7 @@ const WeightBMI = require('../models/weightBMI');
 
 const getAllWeightBMI = async (req, res) => {
   try {
-    const userId = req.header.userId;
+    const userId = req.headers.userId;
     const userWeightBMI = await WeightBMI.find({ userId });
     res.json(userWeightBMI);
   } catch (error) {
@@ -12,8 +12,8 @@ const getAllWeightBMI = async (req, res) => {
 
 const createWeightBMI = async (req, res) => {
   try {
-    const { weight, bmi, date, note } = req.body;
-    const userId = req.header.userId;
+    const {userId, weight, bmi, date, note } = req.body;
+    //const userId = req.header.userId;
     const newWeightBMI = await WeightBMI.create({
       userId,
       weight,

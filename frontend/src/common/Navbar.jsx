@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../contexts/loginContext.js';
+import authServices from '../services/auth.js';
 //import authServices from '../services/auth.js'
 export const Navbar = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
@@ -12,7 +13,22 @@ export const Navbar = () => {
         { name: "Insights", link: "/insights" }
     ];
     let [open, setOpen] = useState(false);
+// check if token is in localstorage, if yes login with token
+const token = localStorage.getItem("token");
+const getProfile= async ()=>{
+    const apiResponse = await authServices.userProfile(token);
+    if (apiResponse.status === 200) {
+        console.log("apiResonse", apiResponse);
+        setIsLoggedIn(true)
+    }
+    else {
+        setIsLoggedIn(false);
+    }
+   } 
 
+useEffect(()=> {
+      getProfile();
+},[token])
    
     return (
         <div className='shadow-md w-full sticky top-0 left-0 mb-5 '>

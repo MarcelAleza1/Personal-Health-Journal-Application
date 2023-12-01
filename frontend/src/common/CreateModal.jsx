@@ -5,10 +5,14 @@ export const CreateModal = ({ showModal, closeModal, onSubmit, title, input1, in
   const [getInput2, setInput2] = useState('');
   const [getInput3, setInput3] = useState('');
   const [getInput4, setInput4] = useState('');
-
+ const [error,setError]= useState(false);
   const handleSubmit = () => {
-
-    const userId = localStorage.getItem("userId"); //
+ if(!getInput1 || !getInput2 || !getInput3 || !getInput4){
+  setError(true)
+ }
+ else{
+  setError(false);
+  const userId = localStorage.getItem("userId"); //
     onSubmit({userId, getInput1, getInput2, getInput3, getInput4 });
 
     setInput1('');
@@ -17,6 +21,8 @@ export const CreateModal = ({ showModal, closeModal, onSubmit, title, input1, in
     setInput4('');
     // Close the modal
     closeModal();
+ }
+  
   };
 
   if (!showModal) return null;
@@ -33,8 +39,9 @@ export const CreateModal = ({ showModal, closeModal, onSubmit, title, input1, in
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
           <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div className="sm:flex sm:items-start">
-              <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 className="text-lg font-medium leading-6 text-gray-900 mb-4">{title}</h3>
+                {error ?<p className='text-rose-600'>Please Fill all the fields</p>: <></>}
                 <div className="mb-4">
                   <p className='mb-1'>{input1}</p>
                   <input

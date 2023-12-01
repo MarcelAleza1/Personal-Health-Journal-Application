@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const weightBMISchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to user
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   weight: Number,
   bmi: Number,
   date: Date,
