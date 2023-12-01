@@ -9,17 +9,16 @@ This application helps users to record health related informations.
 2. Create a `.env` file in the `backend` directory.
 
 3. Add the MongoDB URI to the `.env` file:
-
-MONGODB_URI=your_mongodb_uri
-
+```
+MONGODB_URI=MONGODB_URI
+```
 
 4. Install the required dependencies:
 ```
 npm install
 ```
-5. 
+5. Start the backend server
 ```
-Start the backend server
 node index.js
 ```
 
@@ -32,7 +31,7 @@ node index.js
 npm install
 ```
 
-Start the frontend application:
+3. Start the frontend application:
 
 ```
 npm start
