@@ -13,23 +13,26 @@ export const Navbar = () => {
         { name: "Insights", link: "/insights" }
     ];
     let [open, setOpen] = useState(false);
-// check if token is in localstorage, if yes login with token
-const token = localStorage.getItem("token");
-const getProfile= async ()=>{
-    const apiResponse = await authServices.userProfile(token);
-    if (apiResponse.status === 200) {
-        console.log("apiResonse", apiResponse);
-        setIsLoggedIn(true)
+    // check if token is in localstorage, if yes login with token
+    const token = localStorage.getItem("token");
+    const getProfile = async () => {
+        const apiResponse = await authServices.userProfile(token);
+        if (apiResponse.status === 200) {
+            console.log("apiResonse", apiResponse);
+            setIsLoggedIn(true)
+        }
+        else {
+            setIsLoggedIn(false);
+        }
     }
-    else {
-        setIsLoggedIn(false);
-    }
-   } 
 
-useEffect(()=> {
-      getProfile();
-},[token])
-   
+    useEffect(() => {
+        getProfile();
+    }, [token])
+
+    useEffect(() => {
+        console.log("Open: ", open);
+    }, [open])
     return (
         <div className='shadow-md w-full sticky top-0 left-0 mb-5 '>
             <div className='md:flex items-center justify-between bg-white solide py-4 md:px-10 px-7'>
@@ -45,16 +48,16 @@ useEffect(()=> {
                     {
                         Links.map((link, idx) => (
                             <li className='md:ml-8 md:my-0 my-7 font-semibold' key={idx}>
-                                <Link to={link.link} className='text-gray-800 hover:text-blue-400 duration-500'>{link.name}</Link>
+                                <Link to={link.link} onClick={() => setOpen(false)} className='text-gray-800 hover:text-blue-400 duration-500'>{link.name}</Link>
                             </li>))
                     }
                     {isLoggedIn ? <div>
-                        <Link to={"/profile"} className='ml-2 inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0'>Profile</Link>
-                        <Link to={"/logout"} className="ml-1 inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Logout</Link>
+                        <Link to={"/profile"} onClick={() => setOpen(false)} className='ml-2 inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0'>Profile</Link>
+                        <Link to={"/logout"} onClick={() => setOpen(false)} className="ml-1 inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Logout</Link>
                     </div> :
                         <div>
-                            <Link to={"/login"} className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</Link>
-                            <Link to={"/register"} className="inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Register</Link>
+                            <Link to={"/login"} onClick={() => setOpen(false)} className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</Link>
+                            <Link to={"/register"} onClick={() => setOpen(false)} className="inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Register</Link>
                         </div>}
                     <div className='border border-b md:hidden my-2 mr-2'></div>
                 </ul>
