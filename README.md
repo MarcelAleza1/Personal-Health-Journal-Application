@@ -10,7 +10,7 @@ This application helps users to record health related informations.
 
 3. Add the MongoDB URI to the `.env` file:
 ```
-MONGODB_URI=MONGODB_URI
+MONGODB_URI='mongodb://127.0.0.1:27017/myapp'
 ```
 
 4. Install the required dependencies:
